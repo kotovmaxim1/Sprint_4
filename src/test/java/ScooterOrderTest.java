@@ -8,6 +8,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import ru.qascooter.praktikumservices.pageobject.ScooterOrder;
 import static org.hamcrest.CoreMatchers.containsString;
+import static ru.qascooter.praktikumservices.pageobject.UrlPage.URL_QA_SCOOTER;
 
 @RunWith(Parameterized.class)
 public class ScooterOrderTest {
@@ -29,7 +30,7 @@ public class ScooterOrderTest {
         this.comment = comment;
         WebDriverManager.chromedriver().setup();
         driver = new ChromeDriver();
-        driver.get("https://qa-scooter.praktikum-services.ru");
+        driver.get(URL_QA_SCOOTER);
     }
 
     @Parameterized.Parameters
@@ -41,18 +42,27 @@ public class ScooterOrderTest {
     }
 
     @Test
-    public void ScooterOrderTest(){
+    public void scooterOrderTestWithTopButton(){
         ScooterOrder scooterOrder = new ScooterOrder(driver);
         scooterOrder.clickCloseCookieButton();
         scooterOrder.clickMakeOrderTopButton();
         scooterOrder.makeOrderScooter(name, secondName, address, phoneNumber, date, comment);
         String expected = "Заказ оформлен";
         Assert.assertThat("Текст успешного заказа не найден, вероятно у вас chrome", scooterOrder.findTextOrderSuccess(), containsString(expected));
+    }
 
+    @Test
+    public void scooterOrderTestWithMiddleButton(){
+        ScooterOrder scooterOrder = new ScooterOrder(driver);
+        scooterOrder.clickCloseCookieButton();
+        scooterOrder.clickMakeOrderMiddleButton();
+        scooterOrder.makeOrderScooter(name, secondName, address, phoneNumber, date, comment);
+        String expected = "Заказ оформлен";
+        Assert.assertThat("Текст успешного заказа не найден, вероятно у вас chrome", scooterOrder.findTextOrderSuccess(), containsString(expected));
     }
 
     @After
-    public  void cleanUp(){
+    public void cleanUp(){
         driver.quit();
     }
 }

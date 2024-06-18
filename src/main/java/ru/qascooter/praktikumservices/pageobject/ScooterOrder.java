@@ -66,7 +66,6 @@ public class ScooterOrder extends BasePage {
     private final By textOrderSuccess = By.xpath(".//div/div[2]/div[5]/div[1]");
 
 
-
     //Метод закрытия кук
     public void clickCloseCookieButton(){
         driver.findElement(closeCookieButton).click();
@@ -90,7 +89,6 @@ public class ScooterOrder extends BasePage {
         driver.findElement(confirmOrderButton).click();
     }
 
-
     //Метод клика по верхней кнопке Заказать
     public void clickMakeOrderTopButton(){
         driver.findElement(makeOrderTopButton).click();
@@ -102,7 +100,6 @@ public class ScooterOrder extends BasePage {
         ((JavascriptExecutor)driver).executeScript("arguments[0].scrollIntoView();", element);
         driver.findElement(makeOrderMiddleButton).click();
     }
-
 
     //Метод поиска текста подтверждения заказа
     public String findTextOrderSuccess(){

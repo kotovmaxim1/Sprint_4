@@ -1,5 +1,4 @@
 package ru.qascooter.praktikumservices.pageobject;
-
 import org.openqa.selenium.WebDriver;
 
 public abstract class BasePage {

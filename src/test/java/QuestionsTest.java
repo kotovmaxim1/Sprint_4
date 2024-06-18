@@ -7,8 +7,7 @@ import org.junit.runners.Parameterized;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import ru.qascooter.praktikumservices.pageobject.Questions;
-
-import java.time.Duration;
+import static ru.qascooter.praktikumservices.pageobject.UrlPage.URL_QA_SCOOTER;
 
 @RunWith(Parameterized.class)
 
@@ -25,7 +24,7 @@ public class QuestionsTest {
         this.expectedAnswer = expectedAnswer;
         WebDriverManager.chromedriver().setup();
         driver = new ChromeDriver();
-        driver.get("https://qa-scooter.praktikum-services.ru/");
+        driver.get(URL_QA_SCOOTER);
     }
 
     //провайдер данных для параметризированного теста
@@ -49,11 +48,10 @@ public class QuestionsTest {
         questions.scrollToQuestion();
         String actualText = questions.getAnswer(itemIndex);
         Assert.assertEquals(expectedAnswer, actualText);
-
 }
+
     @After
     public void tearDown(){
         driver.quit();
     }
-
 }
